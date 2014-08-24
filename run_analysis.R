@@ -40,6 +40,7 @@ run_analysis <- function() {
   dataNames <- setdiff(names(tidySet),c("subject","activity","subject.activity"))
   # Create our final data frame
   final <- data.frame(sapply(dataNames,function(x) tapply(tidySet[,x],tidySet$subject.activity,mean)))
+  final$subject.activity <- row.names(final)
   setwd("..")
-  write.table(final,file="final.txt")
+  write.table(final,file="final.txt",row.names=F)
 }
